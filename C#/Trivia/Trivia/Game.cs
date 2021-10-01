@@ -145,7 +145,17 @@ namespace Trivia {
             }
 
             Console.WriteLine("Answer was corrent!!!!");
-            return IncreasePursesAndChangePlayer();
+            _purses[_currentPlayer]++;
+            Console.WriteLine(_players[_currentPlayer]
+                              + " now has "
+                              + _purses[_currentPlayer]
+                              + " Gold Coins.");
+
+            var winner1 = DidPlayerWin();
+            _currentPlayer++;
+            if (_currentPlayer == _players.Count) _currentPlayer = 0;
+
+            return winner1;
         }
 
         private bool IncreasePursesAndChangePlayer() {
