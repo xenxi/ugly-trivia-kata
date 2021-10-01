@@ -57,7 +57,11 @@ namespace Trivia {
             Console.WriteLine("They have rolled a " + roll);
 
             if (CurrentPlayerIsInPenaltyBox) {
-                if (CanGoOutFromPenaltyBox(roll)) {
+                if (!CanGoOutFromPenaltyBox(roll)) {
+                    Console.WriteLine(_players[_currentPlayer] + " is not getting out of the penalty box");
+                    _isGettingOutOfPenaltyBox = false;
+                }
+                else {
                     _isGettingOutOfPenaltyBox = true;
 
                     Console.WriteLine(_players[_currentPlayer] + " is getting out of the penalty box");
@@ -69,10 +73,6 @@ namespace Trivia {
                                       + _places[_currentPlayer]);
                     Console.WriteLine("The category is " + CurrentCategory());
                     AskQuestion();
-                }
-                else {
-                    Console.WriteLine(_players[_currentPlayer] + " is not getting out of the penalty box");
-                    _isGettingOutOfPenaltyBox = false;
                 }
             }
             else {
