@@ -124,7 +124,12 @@ namespace Trivia {
 
         public bool WasCorrectlyAnswered() {
             if (CurrentPlayerIsInPenaltyBox) {
-                if (_isGettingOutOfPenaltyBox) {
+                if (!_isGettingOutOfPenaltyBox) {
+                    _currentPlayer++;
+                    if (_currentPlayer == _players.Count) _currentPlayer = 0;
+                    return true;
+                }
+                else {
                     Console.WriteLine("Answer was correct!!!!");
                     _purses[_currentPlayer]++;
                     Console.WriteLine(_players[_currentPlayer]
@@ -137,11 +142,6 @@ namespace Trivia {
                     if (_currentPlayer == _players.Count) _currentPlayer = 0;
 
                     return winner;
-                }
-                else {
-                    _currentPlayer++;
-                    if (_currentPlayer == _players.Count) _currentPlayer = 0;
-                    return true;
                 }
             }
             else {
