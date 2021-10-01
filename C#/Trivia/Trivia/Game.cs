@@ -143,10 +143,9 @@ namespace Trivia {
 
                 return winner;
             }
-            else {
-                Console.WriteLine("Answer was corrent!!!!");
-                return IncreasePursesAndChangePlayer();
-            }
+
+            Console.WriteLine("Answer was corrent!!!!");
+            return IncreasePursesAndChangePlayer();
         }
 
         private bool IncreasePursesAndChangePlayer() {
