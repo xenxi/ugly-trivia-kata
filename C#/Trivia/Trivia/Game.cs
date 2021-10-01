@@ -144,23 +144,19 @@ namespace Trivia {
                 return winner;
             }
             else {
-                return ExecuteCorrectlyAnswered();
+                Console.WriteLine("Answer was corrent!!!!");
+                _purses[_currentPlayer]++;
+                Console.WriteLine(_players[_currentPlayer]
+                                  + " now has "
+                                  + _purses[_currentPlayer]
+                                  + " Gold Coins.");
+
+                var winner = DidPlayerWin();
+                _currentPlayer++;
+                if (_currentPlayer == _players.Count) _currentPlayer = 0;
+
+                return winner;
             }
-        }
-
-        private bool ExecuteCorrectlyAnswered() {
-            Console.WriteLine("Answer was corrent!!!!");
-            _purses[_currentPlayer]++;
-            Console.WriteLine(_players[_currentPlayer]
-                              + " now has "
-                              + _purses[_currentPlayer]
-                              + " Gold Coins.");
-
-            var winner = DidPlayerWin();
-            _currentPlayer++;
-            if (_currentPlayer == _players.Count) _currentPlayer = 0;
-
-            return winner;
         }
 
         public bool WrongAnswer() {
