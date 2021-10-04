@@ -132,10 +132,10 @@ namespace Trivia {
                 }
 
                 _printer.Print("Answer was correct!!!!");
-                return IncreasePursesAndChangePlayer();
             }
+            else
+                _printer.Print("Answer was corrent!!!!");
 
-            _printer.Print("Answer was corrent!!!!");
             return IncreasePursesAndChangePlayer();
         }
 
