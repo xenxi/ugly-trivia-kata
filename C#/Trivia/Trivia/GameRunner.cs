@@ -9,11 +9,11 @@ namespace Trivia
         private readonly Printer _printer;
 
         static GameRunner() {
-            _instance = new GameRunner();
+            _instance = new GameRunner(new Printer());
         }
 
-        public GameRunner() {
-            _printer = new Printer();
+        public GameRunner(Printer printer) {
+            _printer = printer;
         }
 
         public static void Main(string[] args) {
