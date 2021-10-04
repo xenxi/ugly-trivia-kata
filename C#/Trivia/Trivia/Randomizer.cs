@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace Trivia {
-    public class Randomizer {
+    public class Randomizer : IRandomizer {
         private readonly Random _random;
 
         public Randomizer(Random random) {
