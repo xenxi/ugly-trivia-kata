@@ -30,10 +30,10 @@ namespace Trivia
             var rand = new Random();
 
             do {
-                var randomRoll = rand.Next(5) + 1;
+                var randomRoll = RandomRoll(rand);
                 aGame.Roll(randomRoll);
 
-                var randomResponse = rand.Next(9) == 7;
+                var randomResponse = RandomResponse(rand);
                 if (randomResponse) {
                     _notAWinner = aGame.WrongAnswer();
                 }
@@ -41,6 +41,16 @@ namespace Trivia
                     _notAWinner = aGame.WasCorrectlyAnswered();
                 }
             } while (_notAWinner);
+        }
+
+        private static bool RandomResponse(Random rand) {
+            var randomResponse = rand.Next(9) == 7;
+            return randomResponse;
+        }
+
+        private static int RandomRoll(Random rand) {
+            var randomRoll = rand.Next(5) + 1;
+            return randomRoll;
         }
     }
 }
