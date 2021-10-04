@@ -14,7 +14,8 @@ namespace Trivia.Tests
 
             game.PlayGame();
 
-            Assert.True(false);
+            var expectedOutput = "failTest";
+            Assert.Equal(expectedOutput, printerMock.GetOutput());
         }
     }
 
