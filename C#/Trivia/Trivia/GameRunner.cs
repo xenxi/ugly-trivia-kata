@@ -6,13 +6,13 @@ namespace Trivia
     {
         private static bool _notAWinner;
         private static readonly GameRunner _instance;
-        private readonly Printer _printer;
+        private readonly IPrinter _printer;
 
         static GameRunner() {
             _instance = new GameRunner(new Printer());
         }
 
-        public GameRunner(Printer printer) {
+        public GameRunner(IPrinter printer) {
             _printer = printer;
         }
 
