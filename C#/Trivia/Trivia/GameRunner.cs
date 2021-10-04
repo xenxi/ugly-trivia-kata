@@ -16,7 +16,7 @@ namespace Trivia
         }
 
         public void PlayGame() {
-            var aGame = new Game();
+            var aGame = new Game(new Printer());
 
             aGame.Add("Chet");
             aGame.Add("Pat");

@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace Trivia {
-    public class Printer {
+    public class Printer : IPrinter {
         public Printer() { }
 
         public void Print(string textLine) {
