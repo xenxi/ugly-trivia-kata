@@ -7,7 +7,9 @@ namespace Trivia.Tests
     {
         [Fact]
         public void Test1() {
-            GameRunner.Main(Enumerable.Empty<string>().ToArray());
+            var game = new GameRunner();
+
+            game.PlayGame();
 
             Assert.True(false);
         }
