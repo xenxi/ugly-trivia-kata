@@ -30,10 +30,10 @@ namespace Trivia
             var rand = new Random();
 
             do {
-                var randomRoll = Randomizer.RandomRoll(rand, new Randomizer());
+                var randomRoll = new Randomizer().RandomRoll(rand);
                 aGame.Roll(randomRoll);
 
-                var randomResponse = Randomizer.RandomResponse(rand, new Randomizer());
+                var randomResponse = new Randomizer().RandomResponse(rand);
                 if (randomResponse) {
                     _notAWinner = aGame.WrongAnswer();
                 }
