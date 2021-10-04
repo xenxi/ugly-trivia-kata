@@ -1,13 +1,22 @@
 ﻿namespace Trivia {
     public class Player
     {
+        private bool _inPenaltyBox;
+
         public Player(string Name)
         {
             this.Name = Name;
-            InPenaltyBox = false;
+            _inPenaltyBox = false;
         }
 
         public string Name { get; }
-        public bool InPenaltyBox { get; set; }
+
+        public void EnterInPenaltyBox(bool value) {
+            _inPenaltyBox = value;
+        }
+
+        public bool IsInPenaltyBox() {
+            return _inPenaltyBox;
+        }
     }
 }
