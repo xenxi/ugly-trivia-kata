@@ -5,9 +5,14 @@ namespace Trivia
     public class GameRunner
     {
         private static bool _notAWinner;
+        private static readonly GameRunner _instance;
+
+        static GameRunner() {
+            _instance = new GameRunner();
+        }
 
         public static void Main(string[] args) {
-            new GameRunner().PlayGame();
+            _instance.PlayGame();
         }
 
         public void PlayGame() {
