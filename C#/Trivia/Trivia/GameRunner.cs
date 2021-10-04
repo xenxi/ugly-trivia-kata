@@ -6,9 +6,14 @@ namespace Trivia
     {
         private static bool _notAWinner;
         private static readonly GameRunner _instance;
+        private readonly Printer _printer;
 
         static GameRunner() {
             _instance = new GameRunner();
+        }
+
+        public GameRunner() {
+            _printer = new Printer();
         }
 
         public static void Main(string[] args) {
@@ -16,7 +21,7 @@ namespace Trivia
         }
 
         public void PlayGame() {
-            var aGame = new Game(new Printer());
+            var aGame = new Game(_printer);
 
             aGame.Add("Chet");
             aGame.Add("Pat");
