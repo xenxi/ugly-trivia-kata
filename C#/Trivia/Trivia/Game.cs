@@ -25,7 +25,7 @@ namespace Trivia {
             set => _inPenaltyBox[_currentPlayer] = value;
         }
 
-        public Game() {
+        public Game(Printer printer) {
             for (var i = 0; i < 50; i++) {
                 _popQuestions.AddLast("Pop Question " + i);
                 _scienceQuestions.AddLast(("Science Question " + i));
@@ -33,7 +33,7 @@ namespace Trivia {
                 _rockQuestions.AddLast(CreateRockQuestion(i));
             }
 
-            _printer = new Printer();
+            _printer = printer;
         }
 
         public string CreateRockQuestion(int index) {
