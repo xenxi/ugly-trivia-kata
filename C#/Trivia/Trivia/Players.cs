@@ -17,7 +17,6 @@ namespace Trivia {
 
         public void AddNewPlayer(string playerName) {
             _players.Add(new Player(playerName));
-            _inPenaltyBox[Players1.Count] = false;
         }
 
         public Player GetCurrentPlayer() {
@@ -29,7 +28,7 @@ namespace Trivia {
             if (_currentPlayer == Players1.Count) _currentPlayer = 0;
         }
 
-        public void SetCurrentPlayerIsInPenaltyBox(bool value) => _inPenaltyBox[_currentPlayer] = value;
-        public bool GetCurrentPlayerIsInPenaltyBox() => _inPenaltyBox[_currentPlayer];
+        public void SetCurrentPlayerIsInPenaltyBox(bool value) => GetCurrentPlayer().InPenaltyBox = value;
+        public bool GetCurrentPlayerIsInPenaltyBox() =>  GetCurrentPlayer().InPenaltyBox;
     }
 }
