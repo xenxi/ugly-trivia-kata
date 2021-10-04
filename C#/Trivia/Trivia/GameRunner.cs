@@ -1,4 +1,6 @@
-﻿namespace Trivia
+﻿using System;
+
+namespace Trivia
 {
     public class GameRunner
     {
@@ -26,10 +28,10 @@
             aGame.Add("Sue");
 
             do {
-                var randomRoll = new Randomizer().RandomRoll();
+                var randomRoll = new Randomizer(new Random()).RandomRoll();
                 aGame.Roll(randomRoll);
 
-                var randomResponse = new Randomizer().RandomResponse();
+                var randomResponse = new Randomizer(new Random()).RandomResponse();
                 if (randomResponse) {
                     _notAWinner = aGame.WrongAnswer();
                 }

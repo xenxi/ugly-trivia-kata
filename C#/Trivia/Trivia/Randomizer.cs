@@ -4,8 +4,8 @@ namespace Trivia {
     public class Randomizer {
         private readonly Random _random;
 
-        public Randomizer() {
-            _random = new Random();
+        public Randomizer(Random random) {
+            _random = random;
         }
 
         public bool RandomResponse() {
