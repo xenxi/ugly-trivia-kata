@@ -27,7 +27,5 @@ namespace Trivia {
             _currentPlayer++;
             if (_currentPlayer == Players1.Count) _currentPlayer = 0;
         }
-
-        public void SetCurrentPlayerIsInPenaltyBox(bool value) => GetCurrentPlayer().InPenaltyBox = value;
     }
 }

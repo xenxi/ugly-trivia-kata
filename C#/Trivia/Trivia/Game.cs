@@ -146,9 +146,10 @@ namespace Trivia {
         }
 
         public bool WrongAnswer() {
+            var currentPlayer = _players.GetCurrentPlayer();
             _printer.Print("Question was incorrectly answered");
-            _printer.Print(_players.Players1[_players._currentPlayer] + " was sent to the penalty box");
-            _players.SetCurrentPlayerIsInPenaltyBox(true);
+            _printer.Print(currentPlayer.Name + " was sent to the penalty box");
+            currentPlayer.InPenaltyBox = true;
 
             _players.NextPlayer();
             return true;
