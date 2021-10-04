@@ -7,10 +7,10 @@ namespace Trivia
         private static bool _notAWinner;
 
         public static void Main(string[] args) {
-            PlayGame();
+            PlayGame(new GameRunner());
         }
 
-        public static void PlayGame() {
+        public static void PlayGame(GameRunner game) {
             var aGame = new Game();
 
             aGame.Add("Chet");
