@@ -7,6 +7,7 @@ namespace Trivia
         private static bool _notAWinner;
         private static readonly GameRunner _instance;
         private readonly IPrinter _printer;
+        private readonly Randomizer _randomizer;
 
         static GameRunner() {
             _instance = new GameRunner(new Printer());
@@ -14,6 +15,7 @@ namespace Trivia
 
         public GameRunner(IPrinter printer) {
             _printer = printer;
+            _randomizer = new Randomizer(new Random());
         }
 
         public static void Main(string[] args) {
@@ -28,11 +30,10 @@ namespace Trivia
             aGame.Add("Sue");
 
             do {
-                var randomizer = new Randomizer(new Random());
-                var randomRoll = randomizer.RandomRoll();
+                var randomRoll = _randomizer.RandomRoll();
                 aGame.Roll(randomRoll);
 
-                var randomResponse = randomizer.RandomResponse();
+                var randomResponse = _randomizer.RandomResponse();
                 if (randomResponse) {
                     _notAWinner = aGame.WrongAnswer();
                 }
