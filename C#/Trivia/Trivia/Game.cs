@@ -63,20 +63,18 @@ namespace Trivia {
                 if (!CanGoOutFromPenaltyBox(roll)) {
                     _printer.Print(_players[_currentPlayer] + " is not getting out of the penalty box");
                     _isGettingOutOfPenaltyBox = false;
+                    return;
                 }
                 else {
                     _isGettingOutOfPenaltyBox = true;
 
                     _printer.Print(_players[_currentPlayer] + " is getting out of the penalty box");
 
-                    MoveNewPlace(roll);
-                    AskQuestion();
+     
                 }
             }
-            else {
-                MoveNewPlace(roll);
-                AskQuestion();
-            }
+            MoveNewPlace(roll);
+            AskQuestion();
         }
 
         private void MoveNewPlace(int roll) {
