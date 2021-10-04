@@ -43,9 +43,8 @@ namespace Trivia {
             _purses[HowManyPlayers()] = 0;
             _inPenaltyBox[HowManyPlayers()] = false;
 
-            var wasAdded = playerName + " was added";
-            Print(wasAdded);
-            Console.WriteLine("They are player number " + _players.Count);
+            Print(playerName + " was added");
+            Print("They are player number " + _players.Count);
             return true;
         }
 
@@ -56,18 +55,18 @@ namespace Trivia {
         }
 
         public void Roll(int roll) {
-            Console.WriteLine(_players[_currentPlayer] + " is the current player");
-            Console.WriteLine("They have rolled a " + roll);
+            Print(_players[_currentPlayer] + " is the current player");
+            Print("They have rolled a " + roll);
 
             if (CurrentPlayerIsInPenaltyBox) {
                 if (!CanGoOutFromPenaltyBox(roll)) {
-                    Console.WriteLine(_players[_currentPlayer] + " is not getting out of the penalty box");
+                    Print(_players[_currentPlayer] + " is not getting out of the penalty box");
                     _isGettingOutOfPenaltyBox = false;
                 }
                 else {
                     _isGettingOutOfPenaltyBox = true;
 
-                    Console.WriteLine(_players[_currentPlayer] + " is getting out of the penalty box");
+                    Print(_players[_currentPlayer] + " is getting out of the penalty box");
 
                     MoveNewPlace(roll);
                     AskQuestion();
@@ -83,10 +82,10 @@ namespace Trivia {
             _places[_currentPlayer] = _places[_currentPlayer] + roll;
             if (_places[_currentPlayer] > 11) _places[_currentPlayer] = _places[_currentPlayer] - 12;
 
-            Console.WriteLine(_players[_currentPlayer]
+            Print(_players[_currentPlayer]
                               + "'s new location is "
                               + _places[_currentPlayer]);
-            Console.WriteLine("The category is " + CurrentCategory());
+            Print("The category is " + CurrentCategory());
         }
 
         private static bool CanGoOutFromPenaltyBox(int roll) {
@@ -95,22 +94,22 @@ namespace Trivia {
 
         private void AskQuestion() {
             if (CurrentCategory() == "Pop") {
-                Console.WriteLine(_popQuestions.First());
+                Print(_popQuestions.First());
                 _popQuestions.RemoveFirst();
             }
 
             if (CurrentCategory() == "Science") {
-                Console.WriteLine(_scienceQuestions.First());
+                Print(_scienceQuestions.First());
                 _scienceQuestions.RemoveFirst();
             }
 
             if (CurrentCategory() == "Sports") {
-                Console.WriteLine(_sportsQuestions.First());
+                Print(_sportsQuestions.First());
                 _sportsQuestions.RemoveFirst();
             }
 
             if (CurrentCategory() == "Rock") {
-                Console.WriteLine(_rockQuestions.First());
+                Print(_rockQuestions.First());
                 _rockQuestions.RemoveFirst();
             }
         }
@@ -136,17 +135,17 @@ namespace Trivia {
                     return true;
                 }
 
-                Console.WriteLine("Answer was correct!!!!");
+                Print("Answer was correct!!!!");
                 return IncreasePursesAndChangePlayer();
             }
 
-            Console.WriteLine("Answer was corrent!!!!");
+            Print("Answer was corrent!!!!");
             return IncreasePursesAndChangePlayer();
         }
 
         private bool IncreasePursesAndChangePlayer() {
             _purses[_currentPlayer]++;
-            Console.WriteLine(_players[_currentPlayer]
+            Print(_players[_currentPlayer]
                               + " now has "
                               + _purses[_currentPlayer]
                               + " Gold Coins.");
@@ -159,8 +158,8 @@ namespace Trivia {
         }
 
         public bool WrongAnswer() {
-            Console.WriteLine("Question was incorrectly answered");
-            Console.WriteLine(_players[_currentPlayer] + " was sent to the penalty box");
+            Print("Question was incorrectly answered");
+            Print(_players[_currentPlayer] + " was sent to the penalty box");
             CurrentPlayerIsInPenaltyBox = true;
 
             _currentPlayer++;
