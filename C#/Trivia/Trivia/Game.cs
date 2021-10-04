@@ -7,7 +7,7 @@ namespace Trivia {
         private readonly int[] _places = new int[6];
         private readonly int[] _purses = new int[6];
 
-        private readonly bool[] _inPenaltyBox = new bool[6];
+       
 
         private readonly LinkedList<string> _popQuestions = new LinkedList<string>();
         private readonly LinkedList<string> _scienceQuestions = new LinkedList<string>();
@@ -18,11 +18,6 @@ namespace Trivia {
         private bool _isGettingOutOfPenaltyBox;
         private readonly IPrinter _printer;
         private readonly Players _players;
-
-        private bool CurrentPlayerIsInPenaltyBox {
-            get => _inPenaltyBox[_players._currentPlayer];
-            set => _inPenaltyBox[_players._currentPlayer] = value;
-        }
 
         public Game(IPrinter printer) {
             for (var i = 0; i < 50; i++) {
@@ -44,7 +39,7 @@ namespace Trivia {
             _players.AddNewPlayer(playerName);
             _places[_players.HowManyPlayers] = 0;
             _purses[_players.HowManyPlayers] = 0;
-            _inPenaltyBox[_players.HowManyPlayers] = false;
+            
 
             _printer.Print(playerName + " was added");
             _printer.Print("They are player number " + _players.HowManyPlayers);
@@ -56,7 +51,7 @@ namespace Trivia {
             _printer.Print(currentPlayer + " is the current player");
             _printer.Print("They have rolled a " + roll);
 
-            if (CurrentPlayerIsInPenaltyBox) {
+            if (_players.GetCurrentPlayerIsInPenaltyBox()) {
                 if (!CanGoOutFromPenaltyBox(roll)) {
                     _printer.Print(currentPlayer + " is not getting out of the penalty box");
                     _isGettingOutOfPenaltyBox = false;
@@ -123,7 +118,7 @@ namespace Trivia {
         }
 
         public bool WasCorrectlyAnswered() {
-            if (CurrentPlayerIsInPenaltyBox) {
+            if (_players.GetCurrentPlayerIsInPenaltyBox()) {
                 if (!_isGettingOutOfPenaltyBox) {
                     _players.NextPlayer();
                     return true;
@@ -153,7 +148,7 @@ namespace Trivia {
         public bool WrongAnswer() {
             _printer.Print("Question was incorrectly answered");
             _printer.Print(_players._players[_players._currentPlayer] + " was sent to the penalty box");
-            CurrentPlayerIsInPenaltyBox = true;
+            _players.SetCurrentPlayerIsInPenaltyBox(true);
 
             _players.NextPlayer();
             return true;

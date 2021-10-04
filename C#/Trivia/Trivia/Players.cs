@@ -4,7 +4,7 @@ namespace Trivia {
     public class Players {
         public readonly List<string> _players;
         public int _currentPlayer { get; private set; }
-
+        private readonly bool[] _inPenaltyBox = new bool[6];
         public Players() {
             _players = new List<string>();
             _currentPlayer = 0;
@@ -14,6 +14,7 @@ namespace Trivia {
 
         public void AddNewPlayer(string playerName) {
             _players.Add(playerName);
+            _inPenaltyBox[_players.Count] = false;
         }
 
         public string GetCurrentPlayer() {
@@ -24,5 +25,8 @@ namespace Trivia {
             _currentPlayer++;
             if (_currentPlayer == _players.Count) _currentPlayer = 0;
         }
+
+        public void SetCurrentPlayerIsInPenaltyBox(bool value) => _inPenaltyBox[_currentPlayer] = value;
+        public bool GetCurrentPlayerIsInPenaltyBox() => _inPenaltyBox[_currentPlayer];
     }
 }
