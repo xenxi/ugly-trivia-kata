@@ -29,6 +29,5 @@ namespace Trivia {
         }
 
         public void SetCurrentPlayerIsInPenaltyBox(bool value) => GetCurrentPlayer().InPenaltyBox = value;
-        public bool GetCurrentPlayerIsInPenaltyBox() =>  GetCurrentPlayer().InPenaltyBox;
     }
 }
