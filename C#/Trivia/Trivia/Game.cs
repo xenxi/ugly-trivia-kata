@@ -48,19 +48,19 @@ namespace Trivia {
 
         public void Roll(int roll) {
             var currentPlayer = _players.GetCurrentPlayer();
-            _printer.Print(currentPlayer + " is the current player");
+            _printer.Print(currentPlayer.Name + " is the current player");
             _printer.Print("They have rolled a " + roll);
 
             if (_players.GetCurrentPlayerIsInPenaltyBox()) {
                 if (!CanGoOutFromPenaltyBox(roll)) {
-                    _printer.Print(currentPlayer + " is not getting out of the penalty box");
+                    _printer.Print(currentPlayer.Name + " is not getting out of the penalty box");
                     _isGettingOutOfPenaltyBox = false;
                     return;
                 }
 
                 _isGettingOutOfPenaltyBox = true;
 
-                _printer.Print(currentPlayer + " is getting out of the penalty box");
+                _printer.Print(currentPlayer.Name + " is getting out of the penalty box");
             }
 
             MoveNewPlace(roll);
@@ -72,7 +72,7 @@ namespace Trivia {
             if (_places[_players._currentPlayer] > 11)
                 _places[_players._currentPlayer] = _places[_players._currentPlayer] - 12;
 
-            _printer.Print(_players._players[_players._currentPlayer]
+            _printer.Print(_players.Players1[_players._currentPlayer]
                            + "'s new location is "
                            + _places[_players._currentPlayer]);
             _printer.Print("The category is " + CurrentCategory());
@@ -134,7 +134,7 @@ namespace Trivia {
 
         private bool IncreasePursesAndChangePlayer() {
             _purses[_players._currentPlayer]++;
-            _printer.Print(_players._players[_players._currentPlayer]
+            _printer.Print(_players.Players1[_players._currentPlayer]
                            + " now has "
                            + _purses[_players._currentPlayer]
                            + " Gold Coins.");
@@ -147,7 +147,7 @@ namespace Trivia {
 
         public bool WrongAnswer() {
             _printer.Print("Question was incorrectly answered");
-            _printer.Print(_players._players[_players._currentPlayer] + " was sent to the penalty box");
+            _printer.Print(_players.Players1[_players._currentPlayer] + " was sent to the penalty box");
             _players.SetCurrentPlayerIsInPenaltyBox(true);
 
             _players.NextPlayer();
