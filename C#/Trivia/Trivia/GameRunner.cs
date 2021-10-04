@@ -30,9 +30,11 @@ namespace Trivia
             var rand = new Random();
 
             do {
-                aGame.Roll(rand.Next(5) + 1);
+                var randomRoll = rand.Next(5) + 1;
+                aGame.Roll(randomRoll);
 
-                if (rand.Next(9) == 7) {
+                var randomResponse = rand.Next(9) == 7;
+                if (randomResponse) {
                     _notAWinner = aGame.WrongAnswer();
                 }
                 else {
