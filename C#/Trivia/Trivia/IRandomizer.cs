@@ -1,6 +1,6 @@
 ﻿namespace Trivia {
     public interface IRandomizer {
-        bool RandomResponse();
-        int RandomRoll();
+        bool IsValidResponse();
+        int Roll();
     }
 }
