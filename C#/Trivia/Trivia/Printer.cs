@@ -2,8 +2,6 @@
 
 namespace Trivia {
     public class Printer : IPrinter {
-        public Printer() { }
-
         public void Print(string textLine) {
             Console.WriteLine(textLine);
         }
