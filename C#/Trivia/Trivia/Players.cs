@@ -5,7 +5,7 @@ namespace Trivia {
     public class Players {
         private readonly List<Player> _players;
         public int _currentPlayer { get; private set; }
-        private readonly bool[] _inPenaltyBox = new bool[6];
+
         public Players() {
             _players = new List<Player>();
             _currentPlayer = 0;
