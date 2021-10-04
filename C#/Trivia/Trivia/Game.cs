@@ -43,10 +43,13 @@ namespace Trivia {
             _purses[HowManyPlayers()] = 0;
             _inPenaltyBox[HowManyPlayers()] = false;
 
-            Console.WriteLine(playerName + " was added");
+            var wasAdded = playerName + " was added";
+            Print(wasAdded);
             Console.WriteLine("They are player number " + _players.Count);
             return true;
         }
+
+        private void Print(string textLine) => Console.WriteLine(textLine);
 
         public int HowManyPlayers() {
             return _players.Count;
