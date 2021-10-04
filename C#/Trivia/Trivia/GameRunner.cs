@@ -7,13 +7,13 @@ namespace Trivia
         private static bool _notAWinner;
         private static readonly GameRunner _instance;
         private readonly IPrinter _printer;
-        private readonly Randomizer _randomizer;
+        private readonly IRandomizer _randomizer;
 
         static GameRunner() {
             _instance = new GameRunner(new Printer(), new Randomizer(new Random()));
         }
 
-        public GameRunner(IPrinter printer, Randomizer randomizer) {
+        public GameRunner(IPrinter printer, IRandomizer randomizer) {
             _printer = printer;
             _randomizer = randomizer;
         }
