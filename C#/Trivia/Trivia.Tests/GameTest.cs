@@ -10,7 +10,7 @@ namespace Trivia.Tests
         [Fact]
         public void Test1() {
             var printerMock = new PrinterMock();
-            var game = new GameRunner(printerMock);
+            var game = new GameRunner(printerMock, new RandomizerMock());
             game.PlayGame();
 
             var output = printerMock.GetOutput();
