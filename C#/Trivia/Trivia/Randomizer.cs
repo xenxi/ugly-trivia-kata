@@ -8,12 +8,12 @@ namespace Trivia {
             _random = random;
         }
 
-        public bool RandomResponse() {
+        public bool IsValidResponse() {
             var randomResponse = _random.Next(9) == 7;
             return randomResponse;
         }
 
-        public int RandomRoll() {
+        public int Roll() {
             var randomRoll = _random.Next(5) + 1;
             return randomRoll;
         }
