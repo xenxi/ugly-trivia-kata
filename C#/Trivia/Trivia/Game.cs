@@ -18,14 +18,14 @@ namespace Trivia {
 
         private int _currentPlayer;
         private bool _isGettingOutOfPenaltyBox;
-        private readonly Printer _printer;
+        private readonly IPrinter _printer;
 
         private bool CurrentPlayerIsInPenaltyBox {
             get => _inPenaltyBox[_currentPlayer];
             set => _inPenaltyBox[_currentPlayer] = value;
         }
 
-        public Game(Printer printer) {
+        public Game(IPrinter printer) {
             for (var i = 0; i < 50; i++) {
                 _popQuestions.AddLast("Pop Question " + i);
                 _scienceQuestions.AddLast(("Science Question " + i));
