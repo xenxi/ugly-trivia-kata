@@ -28,10 +28,11 @@ namespace Trivia
             aGame.Add("Sue");
 
             do {
-                var randomRoll = new Randomizer(new Random()).RandomRoll();
+                var randomizer = new Randomizer(new Random());
+                var randomRoll = randomizer.RandomRoll();
                 aGame.Roll(randomRoll);
 
-                var randomResponse = new Randomizer(new Random()).RandomResponse();
+                var randomResponse = randomizer.RandomResponse();
                 if (randomResponse) {
                     _notAWinner = aGame.WrongAnswer();
                 }
