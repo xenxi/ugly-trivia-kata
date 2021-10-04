@@ -10,12 +10,12 @@ namespace Trivia
         private readonly Randomizer _randomizer;
 
         static GameRunner() {
-            _instance = new GameRunner(new Printer());
+            _instance = new GameRunner(new Printer(), new Randomizer(new Random()));
         }
 
-        public GameRunner(IPrinter printer) {
+        public GameRunner(IPrinter printer, Randomizer randomizer) {
             _printer = printer;
-            _randomizer = new Randomizer(new Random());
+            _randomizer = randomizer;
         }
 
         public static void Main(string[] args) {
