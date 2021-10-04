@@ -14,14 +14,14 @@ namespace Trivia {
         private readonly LinkedList<string> _sportsQuestions = new LinkedList<string>();
         private readonly LinkedList<string> _rockQuestions = new LinkedList<string>();
 
-        private int _currentPlayer;
+
         private bool _isGettingOutOfPenaltyBox;
         private readonly IPrinter _printer;
         private readonly Players _players;
 
         private bool CurrentPlayerIsInPenaltyBox {
-            get => _inPenaltyBox[_currentPlayer];
-            set => _inPenaltyBox[_currentPlayer] = value;
+            get => _inPenaltyBox[_players._currentPlayer];
+            set => _inPenaltyBox[_players._currentPlayer] = value;
         }
 
         public Game(IPrinter printer) {
@@ -52,7 +52,7 @@ namespace Trivia {
         }
 
         public void Roll(int roll) {
-            var currentPlayer = _players._players[_currentPlayer];
+            var currentPlayer = _players.GetCurrentPlayer();
             _printer.Print(currentPlayer + " is the current player");
             _printer.Print("They have rolled a " + roll);
 
@@ -67,17 +67,19 @@ namespace Trivia {
 
                 _printer.Print(currentPlayer + " is getting out of the penalty box");
             }
+
             MoveNewPlace(roll);
             AskQuestion();
         }
 
         private void MoveNewPlace(int roll) {
-            _places[_currentPlayer] = _places[_currentPlayer] + roll;
-            if (_places[_currentPlayer] > 11) _places[_currentPlayer] = _places[_currentPlayer] - 12;
+            _places[_players._currentPlayer] = _places[_players._currentPlayer] + roll;
+            if (_places[_players._currentPlayer] > 11)
+                _places[_players._currentPlayer] = _places[_players._currentPlayer] - 12;
 
-            _printer.Print(_players._players[_currentPlayer]
+            _printer.Print(_players._players[_players._currentPlayer]
                            + "'s new location is "
-                           + _places[_currentPlayer]);
+                           + _places[_players._currentPlayer]);
             _printer.Print("The category is " + CurrentCategory());
         }
 
@@ -108,23 +110,22 @@ namespace Trivia {
         }
 
         private string CurrentCategory() {
-            if (_places[_currentPlayer] == 0) return "Pop";
-            if (_places[_currentPlayer] == 4) return "Pop";
-            if (_places[_currentPlayer] == 8) return "Pop";
-            if (_places[_currentPlayer] == 1) return "Science";
-            if (_places[_currentPlayer] == 5) return "Science";
-            if (_places[_currentPlayer] == 9) return "Science";
-            if (_places[_currentPlayer] == 2) return "Sports";
-            if (_places[_currentPlayer] == 6) return "Sports";
-            if (_places[_currentPlayer] == 10) return "Sports";
+            if (_places[_players._currentPlayer] == 0) return "Pop";
+            if (_places[_players._currentPlayer] == 4) return "Pop";
+            if (_places[_players._currentPlayer] == 8) return "Pop";
+            if (_places[_players._currentPlayer] == 1) return "Science";
+            if (_places[_players._currentPlayer] == 5) return "Science";
+            if (_places[_players._currentPlayer] == 9) return "Science";
+            if (_places[_players._currentPlayer] == 2) return "Sports";
+            if (_places[_players._currentPlayer] == 6) return "Sports";
+            if (_places[_players._currentPlayer] == 10) return "Sports";
             return "Rock";
         }
 
         public bool WasCorrectlyAnswered() {
             if (CurrentPlayerIsInPenaltyBox) {
                 if (!_isGettingOutOfPenaltyBox) {
-                    _currentPlayer++;
-                    if (_currentPlayer == _players._players.Count) _currentPlayer = 0;
+                    _players.NextPlayer();
                     return true;
                 }
 
@@ -137,32 +138,30 @@ namespace Trivia {
         }
 
         private bool IncreasePursesAndChangePlayer() {
-            _purses[_currentPlayer]++;
-            _printer.Print(_players._players[_currentPlayer]
+            _purses[_players._currentPlayer]++;
+            _printer.Print(_players._players[_players._currentPlayer]
                            + " now has "
-                           + _purses[_currentPlayer]
+                           + _purses[_players._currentPlayer]
                            + " Gold Coins.");
 
             var winner = DidPlayerWin();
-            _currentPlayer++;
-            if (_currentPlayer == _players._players.Count) _currentPlayer = 0;
+            _players.NextPlayer();
 
             return winner;
         }
 
         public bool WrongAnswer() {
             _printer.Print("Question was incorrectly answered");
-            _printer.Print(_players._players[_currentPlayer] + " was sent to the penalty box");
+            _printer.Print(_players._players[_players._currentPlayer] + " was sent to the penalty box");
             CurrentPlayerIsInPenaltyBox = true;
 
-            _currentPlayer++;
-            if (_currentPlayer == _players._players.Count) _currentPlayer = 0;
+            _players.NextPlayer();
             return true;
         }
 
 
         private bool DidPlayerWin() {
-            return !(_purses[_currentPlayer] == 6);
+            return !(_purses[_players._currentPlayer] == 6);
         }
     }
 }
